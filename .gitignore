@@ -1,0 +1,22 @@
+# macOS
+.DS_Store
+.AppleDouble
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Vercel local CLI only (no vercel.json needed for this project)
+.vercel/
+
+# Logs
+*.log

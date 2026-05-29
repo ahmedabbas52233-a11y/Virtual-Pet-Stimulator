@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Virtual Pet Simulator — adopt, raise, evolve and battle pets. Zero dependencies."
+    />
+    <meta property="og:title" content="Virtual Pet Simulator" />
+    <meta
+      property="og:description"
+      content="Adopt, raise, evolve, and battle virtual pets in your browser."
+    />
+    <meta property="og:type" content="website" />
+    <title>Virtual Pet Simulator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Toast notifications -->
+    <div id="toast-rack" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Animated perspective background -->
+    <div class="bg-scene" aria-hidden="true">
+      <div class="bg-grid"></div>
+      <div class="bg-glow bg-glow-1"></div>
+      <div class="bg-glow bg-glow-2"></div>
+      <div class="bg-glow bg-glow-3"></div>
+    </div>
+
+    <!-- Save/Load slot modal -->
+    <div
+      id="slot-modal"
+      class="slot-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Save slots"
+      hidden
+    >
+      <div class="slot-modal-box">
+        <div class="slot-modal-title" id="slot-modal-title">Select Slot</div>
+        <div id="slot-list" class="slot-list"></div>
+        <button class="btn slot-cancel-btn" onclick="closeSlotModal()">
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <div id="app">
+      <!-- ── Header ─────────────────────────────────── -->
+      <header class="hdr">
+        <div class="hdr-l">
+          <h1 class="logo">🐾 <span class="glow-text">Pet Simulator</span></h1>
+          <span id="tick-badge" class="pill pill-dim mono"></span>
+          <span id="wx-badge"></span>
+        </div>
+        <div class="hdr-r">
+          <div class="speed-group" role="group" aria-label="Simulation speed">
+            <button class="btn btn-sm" id="sp-slow" onclick="setSpeed('slow')">
+              Slow
+            </button>
+            <button
+              class="btn btn-sm active"
+              id="sp-normal"
+              onclick="setSpeed('normal')"
+            >
+              Normal
+            </button>
+            <button class="btn btn-sm" id="sp-fast" onclick="setSpeed('fast')">
+              Fast
+            </button>
+          </div>
+          <button
+            class="btn btn-sm"
+            id="pause-btn"
+            onclick="togglePause()"
+            aria-label="Pause game"
+          >
+            <i class="fa-solid fa-pause" aria-hidden="true"></i>
+            <span>Pause</span>
+          </button>
+          <button
+            class="btn btn-sm btn-green"
+            onclick="openSlotModal('save')"
+            aria-label="Save game"
+          >
+            <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>
+            <span>Save</span>
+          </button>
+          <button
+            class="btn btn-sm btn-purple"
+            onclick="openSlotModal('load')"
+            aria-label="Load game"
+          >
+            <i class="fa-solid fa-rotate-left" aria-hidden="true"></i>
+            <span>Load</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- ── Alerts ──────────────────────────────────── -->
+      <div id="alerts" role="alert"></div>
+
+      <!-- ── User tabs ───────────────────────────────── -->
+      <div
+        id="utabs"
+        class="utabs"
+        role="tablist"
+        aria-label="Select owner"
+      ></div>
+
+      <!-- ── Main layout ─────────────────────────────── -->
+      <div class="body-grid">
+        <!-- Left column -->
+        <section class="left-col" aria-label="Your pets">
+          <div
+            id="pet-strip"
+            class="pet-strip"
+            role="list"
+            aria-label="Your pets"
+          ></div>
+          <div id="detail" class="panel detail-panel">
+            <div class="empty-state">
+              <div class="empty-icon">🐾</div>
+              <div>Select a pet above to start playing</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Right column -->
+        <aside class="right-col" aria-label="Information panels">
+          <div
+            id="rp-tabs"
+            class="rp-tabs"
+            role="tablist"
+            aria-label="Panel tabs"
+          ></div>
+          <div id="right-panel" class="panel"></div>
+        </aside>
+      </div>
+      <!-- /body-grid -->
+    </div>
+    <!-- /app -->
+
+    <!-- Mobile bottom navigation -->
+    <nav class="mobile-nav" aria-label="Mobile panel navigation">
+      <button onclick="setRP('log')" id="mnav-log">
+        <span>📋</span><span>Log</span>
+      </button>
+      <button onclick="setRP('pool')" id="mnav-pool">
+        <span>🏠</span><span>Pool</span>
+      </button>
+      <button onclick="setRP('shop')" id="mnav-shop">
+        <span>🛒</span><span>Shop</span>
+      </button>
+      <button onclick="setRP('overview')" id="mnav-overview">
+        <span>👥</span><span>All</span>
+      </button>
+      <button onclick="setRP('awards')" id="mnav-awards">
+        <span>🏆</span><span>Awards</span>
+      </button>
+      <button onclick="setRP('battle')" id="mnav-battle">
+        <span>⚔️</span><span>Battle</span>
+      </button>
+    </nav>
+
+    <script src="game.js"></script>
+  </body>
+</html>
