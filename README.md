@@ -6,7 +6,7 @@
 
 A browser-based virtual pet game — zero dependencies, zero install.
 
-[▶ Play Live Demo](https://your-app.vercel.app) · [Report a Bug](https://github.com/YOUR_USERNAME/virtual-pet-simulator/issues)
+[▶ Play Live Demo](https://virtual-pet-stimulator.vercel.app/) · [Report a Bug](https://github.com/ahmedabbas52233-a11y/virtual-pet-simulator/issues)
 
 ![HTML](https://img.shields.io/badge/built%20with-HTML%2FCSS%2FJS-orange)
 ![No deps](https://img.shields.io/badge/dependencies-zero-brightgreen)
